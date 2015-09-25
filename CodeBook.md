@@ -130,16 +130,16 @@ Following 33 quantitative variables use the same raw data than the previous ones
 ###  Description of transformations/manipulations made to get the final tidy datasets
 The description will be made for each step of the assignment, remembered by the corresponding number from 1 to 5.
 
-1. Merging the training and the test sets to create one data set
+1. Merging the training and the test sets to create one data set.
 Only measures from X_train and X_test files are merged at first as we will only keep the subset of columns containing "-mean()" or "-std()" in their names. Columns of subject and activity labels will be added after the selection of the relevant columns of measures.
 
-2. Extract features based on mean() and sd() according to features names from the features.txt file
+2. Extract features based on mean() and sd() according to features names from the features.txt file.
 only consider features containing -mean() or -std() as additional vectors gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean, tBodyGyroJerkMean are already more sophisticated features based on the signals by direction.
 
-3. Replace number-based levels for the activity (y_* vectors) by the names from the "activity_labels.txt" file
+3. Replace number-based levels for the activity (y_* vectors) by the names from the "activity_labels.txt" file.
 Both y_train and y_test are merged to fit the corresponding records of the previous merge of X_train and X_test. The levels 1 to 6 are recoded using the levels() function and the labels from the "activity_labels.txt" file: 1 becomes WALKING and so on.
 
-4. Rename the original X features to suppress the parentheses and the minus signs that may affect some manipulations
+4. Rename the original X features to suppress the parentheses and the minus signs that may affect some manipulations.
 This renaming is done following the steps below, based on a split of the names from "features.txt" according to the "-" sign and several manipulations through lapply() to build the final names:
         *split the names in 2 or three parts, those separated by the "-" signs 
         *get the mean() and std() part of the names, which are the second ones originally between the "-" signs
@@ -147,11 +147,11 @@ This renaming is done following the steps below, based on a split of the names f
         *get the first, and the third if relevant, part(s) of the original names
         *combine and paste together the new parts for names, separated by a ".", mean or std are now at the end of the name
 
-4'. Additional step to combine all relevant components (subject labels, mean/sd measures, activity labels) in a unique dataset called dataset.tot
+4'. Additional step to combine all relevant components (subject labels, mean/sd measures, activity labels) in a unique dataset called dataset.tot.
 
-5. Create the second dataset containing the average of each variable for each activity and each subject
+5. Create the second dataset containing the average of each variable for each activity and each subject.
 Using the data.table specific way to apply functions to columns, the mean function is applied to the entire dataset.tot table, except to the factor columns Subject and Activity.
 The lapply function allows to compute the mean according to the levels of Subject and Activity factors simultaneously.
 The result is the second tidy dataset of 180 rows (30 subjects time 6 activities) by 68 columns, where the two first columns contain the combinations of the levels of Subject and Activity and the 66 following contains the corresponding means of the means and means of the standard deviations from the dataset.tot quantitative variables.
 
-5'. Additional step to write the second dataset in a text file for upload as PartI of the Course Project
+5'. Additional step to write the second dataset in a text file for upload as PartI of the Course Project.
