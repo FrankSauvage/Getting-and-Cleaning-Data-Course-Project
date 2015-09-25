@@ -69,6 +69,7 @@
         # labels columns will be added after this selection of columns
         dataset.tot <- rbind(measures_train,measures_test) # at this stage, dataset.tot contains all X_ measures
         dim(dataset.tot) #checking of the dimensions
+        summary(dataset.tot) #reveals there is no missing data
         
 # 2. Extract features based on mean() and sd() according to features names
         #only consider features containing -mean() or -std() as additional vectors gravityMean, tBodyAccMean, tBodyAccJerkMean, tBodyGyroMean, tBodyGyroJerkMean are means by window and not by measurement
